@@ -17,7 +17,7 @@ const services = [
         category: "adventure",
         price: 2000,
         image: "./images/blox.png",
-        description: "Bantuan level, farming, quest, dan progres permainan."
+        description: "Joki Exp, Level, Dan Event di Blox Fruit"
     },
     {
         id: 3,
@@ -25,15 +25,15 @@ const services = [
         category: "bertahan hidup",
         price: 5000,
         image: "./images/vd.png",
-        description: "Bantuan progres dan aktivitas permainan Violence District."
+        description: "Joki Screws, Emblems, Level di Violence District."
     },
     {
         id: 4,
         name: "Driving Empire",
         category: "simulator",
-        price: 49000,
+        price: 4000,
         image: "./images/driving.png",
-        description: "Joki money permainan Driving Empire."
+        description: "Joki money di Driving Empire."
     },
     {
         id: 5,
