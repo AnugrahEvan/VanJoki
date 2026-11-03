@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10131f">
+
+    <meta name="description" content="VanJoki adalah marketplace layanan gaming Roblox. Temukan layanan Blox Fruits, Violence District, dan Driving Empire.">
+    <meta name="keywords" content="VanJoki, Roblox, Joki Roblox, Gaming Marketplace, Blox Fruits, Violence District, Driving Empire">
+    <meta name="author" content="Anugrah Evan Syahputra">
+
+    <meta property="og:title" content="VanJoki — Gaming Marketplace">
+    <meta property="og:description" content="Temukan layanan game Roblox favoritmu di VanJoki.">
+    <meta property="og:type" content="website">
+
+    <title>VanJoki — Gaming Marketplace</title>
+
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="./script.js" defer></script>
+
+    <style>
+        /* =====================================
+           LOGO
+        ===================================== */
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-image {
+            display: block;
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            flex-shrink: 0;
+            transition: transform .3s ease;
+        }
+
+        .logo:hover .logo-image {
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+
+        .logo-text .accent {
+            color: #8b5cf6;
+        }
+
+        .logo-text small {
+            font-size: 14px;
+            margin-left: 2px;
+        }
+
+        /* =====================================
+           NAVIGASI
+        ===================================== */
+
+        #navMenu {
+            align-items: center;
+            gap: 18px;
+        }
+
+        #myOrdersNavButton {
+            width: auto;
+            margin: 0;
+            padding: 10px 14px;
+            white-space: nowrap;
+        }
+
+        .service-order {
+            font: inherit;
+        }
+
+        /* =====================================
+           PENCARIAN
+        ===================================== */
+
+        .search-bar {
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            min-height: 58px;
+            box-sizing: border-box;
+            gap: 12px;
+        }
+
+        .search-icon {
+            position: absolute !important;
+            top: 50% !important;
+            left: 20px !important;
+            right: auto !important;
+            transform: translateY(-50%) !important;
+            z-index: 2;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .search-bar input {
+            display: block !important;
+            width: 100% !important;
+            height: 58px !important;
+            box-sizing: border-box !important;
+            margin: 0 !important;
+            padding: 0 20px 0 55px !important;
+        }
+
+        .search-hint {
+            display: none !important;
+        }
+
+        /* =====================================
+           KATALOG
+        ===================================== */
+
+        .catalog-layout {
+            display: grid !important;
+            grid-template-columns: 265px minmax(0, 1fr) !important;
+            align-items: start !important;
+            gap: 35px !important;
+            width: 100%;
+        }
+
+        .filter-sidebar {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        .catalog-main {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .catalog-toolbar {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            flex-wrap: wrap;
+            gap: 18px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .catalog-toolbar > div {
+            min-width: 0;
+        }
+
+        .sort-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            width: 100%;
+            margin-top: 28px;
+        }
+
+        .service-card {
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .service-card img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        .filter-btn {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .empty-message[hidden] {
+            display: none !important;
+        }
+
+        /* =====================================
+           NAVIGASI RESPONSIVE
+        ===================================== */
+
+        button,
+        a,
+        input,
+        select {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible {
+            outline: 2px solid #8b5cf6;
+            outline-offset: 4px;
+        }
+
+        /* =====================================
+           TABLET
+        ===================================== */
+
+        @media (max-width: 900px) {
+            #navMenu {
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            #myOrdersNavButton {
+                width: 100%;
+                margin-top: 8px;
+            }
+
+            .logo-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 19px;
+            }
+
+            .catalog-layout {
+                grid-template-columns: 220px minmax(0, 1fr) !important;
+                gap: 22px !important;
+            }
+
+            .service-grid {
+                gap: 16px;
+            }
+        }
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 650px) {
+            .catalog-layout {
+                grid-template-columns: 1fr !important;
+                gap: 22px !important;
+            }
+
+            .filter-sidebar {
+                width: 100%;
+            }
+
+            .catalog-toolbar {
+                align-items: flex-start !important;
+                flex-direction: column;
+            }
+
+            .sort-control {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .sort-control select {
+                max-width: 65%;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .search-bar,
+            .search-bar input {
+                min-height: 52px;
+                height: 52px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 18px;
+            }
+
+            .logo-text small {
+                font-size: 12px;
+            }
+
+            .hero-stats {
+                gap: 15px;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =====================================
+           MENGURANGI ANIMASI
+        ===================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+
+        <a href="#beranda" class="logo" aria-label="VanJoki - Beranda">
+            <img
+                src="./images/logo.png"
+                alt="Logo VanJoki"
+                class="logo-image"
+                width="46"
+                height="46"
+                onerror="this.onerror=null;this.src='./logo.png';"
+            >
+
+            <span class="logo-text">
+                Van<span class="accent">Joki</span><small></small>
+            </span>
+        </a>
+
+        <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Buka menu"
+            aria-expanded="false"
+            aria-controls="navMenu"
+        >
+            ☰
+        </button>
+
+        <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
+            <a href="#beranda">Beranda</a>
+            <a href="#game">Jelajahi Game</a>
+            <a href="#keunggulan">Keunggulan</a>
+        </nav>
+
+        <a class="button button-outline header-contact" href="#game">
+            Pesan Sekarang
+        </a>
+
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="beranda">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    VanJoki GAMING MARKETPLACE
+                </div>
+
+                <h1>
+                    Waktunya Naik Level.<br>
+                    <span class="gradient-text">Main Lebih Maksimal.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Temukan layanan bantuan progres game Roblox favoritmu.
+                    Pilih game, lihat harga, dan buat pesanan langsung
+                    melalui website VanJoki.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#game" class="button button-primary">
+                        Jelajahi Layanan
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                    <a href="#orderHistory" class="button button-dark">
+                        Pesanan Saya
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+
+                    <div>
+                        <strong>Roblox</strong>
+                        <span>Game favorit</span>
+                    </div>
+
+                    <div>
+                        <strong>Fleksibel</strong>
+                        <span>Pilihan layanan</span>
+                    </div>
+
+                    <div>
+                        <strong>Praktis</strong>
+                        <span>Pesan di website</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- HERO VISUAL -->
+            <div class="hero-visual">
+
+                <div class="visual-glow"></div>
+
+                <div class="floating-card floating-card-top">
+                    <span class="floating-icon" aria-hidden="true">⚡</span>
+
+                    <div>
+                        <strong>Level Up</strong>
+                        <small>Progres game</small>
+                    </div>
+                </div>
+
+                <div class="hero-game-panel">
+
+                    <div class="panel-top">
+                        <span class="live-dot"></span>
+                        <span>GAME SPOTLIGHT</span>
+                        <span class="panel-dots" aria-hidden="true">•••</span>
+                    </div>
+
+                    <div class="spotlight-art">
+                        <div class="spotlight-orbit orbit-one"></div>
+                        <div class="spotlight-orbit orbit-two"></div>
+
+                        <div class="spotlight-controller" aria-hidden="true">
+                            🎮
+                        </div>
+
+                        <div class="spotlight-badge">
+                            ROBLOX
+                        </div>
+                    </div>
+
+                    <div class="spotlight-info">
+
+                        <div>
+                            <h3>Find Your Next Level</h3>
+                            <p>Jelajahi layanan game pilihanmu.</p>
+                        </div>
+
+                        <a
+                            href="#game"
+                            class="round-arrow"
+                            aria-label="Lihat layanan game"
+                        >
+                            ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="floating-card floating-card-bottom">
+                    <span class="floating-icon" aria-hidden="true">🎯</span>
+
+                    <div>
+                        <strong>Pilih Game</strong>
+                        <small>Temukan layananmu</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- INFORMASI LAYANAN -->
+        <section class="trust-strip" aria-label="Keunggulan layanan">
+
+            <div>
+                <span aria-hidden="true">✦</span>
+                Pilihan game populer
+            </div>
+
+            <div>
+                <span aria-hidden="true">✦</span>
+                Informasi harga jelas
+            </div>
+
+            <div>
+                <span aria-hidden="true">✦</span>
+                Pesan langsung di website
+            </div>
+
+        </section>
+
+        <!-- KATALOG GAME -->
+        <section class="catalog section-container" id="game">
+
+            <div class="section-heading">
+
+                <div>
+                    <div class="eyebrow">
+                        EXPLORE MARKETPLACE
+                    </div>
+
+                    <h2>
+                        Temukan
+                        <span class="gradient-text">Layanan Game</span>
+                    </h2>
+
+                    <p>
+                        Pilih game dan buat pesanan melalui website.
+                    </p>
+                </div>
+
+                <div class="catalog-count">
+                    <strong id="serviceCount">4</strong>
+                    <span>layanan tersedia</span>
+                </div>
+
+            </div>
+
+            <!-- PENCARIAN -->
+            <div class="search-bar">
+
+                <span class="search-icon" aria-hidden="true">⌕</span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Cari game favoritmu..."
+                    aria-label="Cari game"
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <div class="catalog-layout">
+
+                <!-- FILTER KATEGORI -->
+                <aside class="filter-sidebar">
+
+                    <h3>Kategori</h3>
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-filter="all"
+                        aria-pressed="true"
+                    >
+                        <span aria-hidden="true">▦</span>
+                        Semua Game
+                        <span class="filter-arrow" aria-hidden="true">›</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="adventure"
+                        aria-pressed="false"
+                    >
+                        <span aria-hidden="true">⚔</span>
+                        Adventure
+                        <span class="filter-arrow" aria-hidden="true">›</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="bertahan hidup"
+                        aria-pressed="false"
+                    >
+                        <span aria-hidden="true">🛡</span>
+                        Bertahan Hidup
+                        <span class="filter-arrow" aria-hidden="true">›</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="simulator"
+                        aria-pressed="false"
+                    >
+                        <span aria-hidden="true">◈</span>
+                        Simulator
+                        <span class="filter-arrow" aria-hidden="true">›</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="other"
+                        aria-pressed="false"
+                    >
+                        <span aria-hidden="true">✧</span>
+                        Lainnya
+                        <span class="filter-arrow" aria-hidden="true">›</span>
+                    </button>
+
+                    <div class="sidebar-note">
+
+                        <span aria-hidden="true">📋</span>
+
+                        <h4>Pesanan Kamu</h4>
+
+                        <p>
+                            Periksa informasi pesanan dan lanjutkan
+                            komunikasi dengan admin.
+                        </p>
+
+                        <a href="#orderHistory">
+                            Lihat pesanan →
+                        </a>
+
+                    </div>
+
+                </aside>
+
+                <!-- DAFTAR LAYANAN -->
+                <div class="catalog-main">
+
+                    <div class="catalog-toolbar">
+
+                        <div>
+                            <h3>Layanan Roblox</h3>
+                            <p>Pilihan layanan untuk game favoritmu</p>
+                        </div>
+
+                        <label class="sort-control">
+
+                            <span>Urutkan:</span>
+
+                            <select
+                                id="sortSelect"
+                                aria-label="Urutkan layanan"
+                            >
+                                <option value="default">Rekomendasi</option>
+                                <option value="low">Harga terendah</option>
+                                <option value="high">Harga tertinggi</option>
+                                <option value="name">Nama game</option>
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                    <div
+                        class="service-grid"
+                        id="serviceGrid"
+                        aria-live="polite"
+                    ></div>
+
+                    <!-- PESAN JIKA GAME TIDAK DITEMUKAN -->
+                    <div class="empty-message" id="emptyMessage" hidden>
+
+                        <span aria-hidden="true">🔎</span>
+
+                        <h3>Game tidak ditemukan</h3>
+
+                        <p>
+                            Coba kata kunci lain atau pilih kategori berbeda.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="button button-primary"
+                            id="resetSearch"
+                        >
+                            Tampilkan Semua
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- KEUNGGULAN -->
+        <section class="why-section" id="keunggulan">
+
+            <div class="section-container">
+
+                <div class="section-heading centered">
+
+                    <div>
+                        <div class="eyebrow">
+                            KENAPA VANJOKI?
+                        </div>
+
+                        <h2>
+                            Pengalaman Belanja
+                            <span class="gradient-text">Lebih Praktis</span>
+                        </h2>
+
+                        <p>
+                            Pilih layanan, buat pesanan, dan periksa
+                            informasinya langsung melalui website.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="benefit-grid">
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon purple" aria-hidden="true">
+                            ⌕
+                        </div>
+
+                        <h3>Mudah Dicari</h3>
+
+                        <p>
+                            Gunakan pencarian dan kategori untuk menemukan
+                            game yang kamu inginkan.
+                        </p>
+
+                    </article>
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon blue" aria-hidden="true">
+                            ◈
+                        </div>
+
+                        <h3>Harga Transparan</h3>
+
+                        <p>
+                            Lihat harga awal setiap layanan sebelum
+                            membuat pesanan.
+                        </p>
+
+                    </article>
+
+                    <article class="benefit-card">
+
+                        <div class="benefit-icon green" aria-hidden="true">
+                            ✓
+                        </div>
+
+                        <h3>Hubungi Admin</h3>
+
+                        <p>
+                            Lanjutkan pemesanan melalui WhatsApp dan
+                            dapatkan konfirmasi langsung dari admin.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- AJAKAN MEMESAN -->
+        <section class="cta-section">
+
+            <div class="cta-box">
+
+                <div class="cta-content">
+
+                    <div class="eyebrow">
+                        READY TO LEVEL UP?
+                    </div>
+
+                    <h2>Siap membuat pesanan?</h2>
+
+                    <p>
+                        Pilih layanan game favoritmu dan isi formulir
+                        pemesanan langsung di VanJoki.
+                    </p>
+
+                    <a href="#game" class="button button-primary">
+                        Mulai Memesan
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                </div>
+
+                <div class="cta-decoration" aria-hidden="true">
+                    VJ
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- BAGIAN PESANAN SAYA DIBUAT OLEH script.js -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-main">
+
+            <a
+                href="#beranda"
+                class="logo"
+                aria-label="VanJoki - Kembali ke beranda"
+            >
+
+                <img
+                    src="./images/logo.png"
+                    alt="Logo VanJoki"
+                    class="logo-image"
+                    width="46"
+                    height="46"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='./logo.png';"
+                >
+
+                <span class="logo-text">
+                    Van<span class="accent">Joki</span><small></small>
+                </span>
+
+            </a>
+
+            <p>
+                Temukan layanan game favoritmu dengan lebih praktis.
+            </p>
+
+            <a href="#game" class="footer-contact">
+                Jelajahi Layanan ↗
+            </a>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span id="year"></span> VanJoki Semua hak dilindungi.
+            </span>
+
+            <span>
+                Website independen, tidak berafiliasi dengan Roblox Corporation.
+            </span>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
